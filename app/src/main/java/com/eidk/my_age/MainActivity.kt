@@ -31,10 +31,9 @@ class MainActivity : AppCompatActivity() {
             var day: Int? = null
 
             if (DOM == currentmonth) {
-                yea = (currentYear - DOY)-1
+                yea = (currentYear - DOY) - 1
                 month = currentmonth - DOM + 11
-                    currentDay++
-
+                currentDay++
 
 
             } else if (currentmonth >= DOM) {
@@ -51,13 +50,14 @@ class MainActivity : AppCompatActivity() {
             if (DOD > currentDay) {
 
                 day = currentDay - DOD
-                day = 30+day
+                day = 30 + day
 
-            }else {
+            } else {
                 day = currentDay - DOD
             }
 
             day = abs(day)
+
 //            day = currentmonth - day
             month = abs(month)
             showtext.text = "your age is  $yea years $month months $day days"
