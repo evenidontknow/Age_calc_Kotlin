@@ -16,37 +16,49 @@ class MainActivity : AppCompatActivity() {
 
         findage.setOnClickListener {
             val DOD: Int = editTextday.text.toString().toInt()
-            val DOM:Int = editTextMonth.text.toString().toInt()
-            val DOY:Int = editTextyear.text.toString().toInt()
+            val DOM: Int = editTextMonth.text.toString().toInt()
+            val DOY: Int = editTextyear.text.toString().toInt()
 
-            val currentDay = Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
-            val currentmonth = Calendar.getInstance().get(Calendar.MONTH)
-
-
-            val currentYear = Calendar.getInstance().get(Calendar.YEAR)
+            var currentDay = Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
+            val currentmonth = Calendar.getInstance().get(Calendar.MONTH) + 1
 
 
+            var currentYear = Calendar.getInstance().get(Calendar.YEAR)
 
-            var month:Int? =null
 
-            if (currentmonth == DOM)
-            {
-                 month = DOM- currentmonth
-            } else if (currentmonth >= DOM){
+            var month: Int? = null
+            var yea: Int? = null
+            var day: Int? = null
 
-                month = DOM- currentmonth
+            if (DOM == currentmonth) {
+                yea = (currentYear - DOY)-1
+                month = currentmonth - DOM + 11
+                    currentDay++
+
+
+
+            } else if (currentmonth >= DOM) {
+
+                month = (DOM - currentmonth)
+                yea = currentYear - DOY
+                currentDay++
+
+            } else {
+                month = (12 + currentmonth) - DOM
+                yea = (currentYear - DOY) - 1
+
+            }
+            if (DOD > currentDay) {
+
+                day = currentDay - DOD
+                day = 30+day
+
+            }else {
+                day = currentDay - DOD
             }
 
-            else{
-                 month =(12 + currentmonth )- DOM
-            }
-
-
-
-            var day:Double = ((currentDay- DOD).toDouble())
-            val yea = currentYear-DOY
             day = abs(day)
-            day = 30.146-day
+//            day = currentmonth - day
             month = abs(month)
             showtext.text = "your age is  $yea years $month months $day days"
 
